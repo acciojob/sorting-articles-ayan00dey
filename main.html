@@ -1,16 +1,33 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorted Bands List</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f4; }
+        h1 { color: #333; text-align: center; }
+        ul { list-style: none; padding: 0; max-width: 400px; margin: 0 auto; }
+        li { padding: 5px 0; font-size: 18px; border-bottom: 1px solid #ddd; }
+        li:last-child { border-bottom: none; }
+    </style>
+    <script>
+        const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+
+        function stripArticle(band) {
+            return band.replace(/^(a |an |the )/i, '').trim();
+        }
+
+        const sortedBands = bands.sort((a, b) => stripArticle(a).localeCompare(stripArticle(b)));
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const bandList = document.getElementById('bands');
+            bandList.innerHTML = sortedBands.map(band => `<li>${band}</li>`).join('');
+        });
+    </script>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
-
+    <h1>Sorted Bands List (Ignoring 'A', 'An', 'The')</h1>
+    <ul id="bands"></ul>
 </body>
-
 </html>
